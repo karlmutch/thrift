@@ -2313,7 +2313,11 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
         f_remote << indent() << "  Usage()" << endl;
         f_remote << indent() << " return" << endl;
         f_remote << indent() << "}" << endl;
-        f_remote << indent() << "argvalue" << i << " := " << package_name_ << "."
+        string module(module_name(the_type));
+        if (0 == strlen(module.c_str())) {
+            module = package_name_;
+        }
+        f_remote << indent() << "argvalue" << i << " := " << module << "."
                  << publicize(the_type->get_name()) << "(tmp" << i << ")" << endl;
       } else if (the_type2->is_base_type()) {
         t_base_type::t_base e = ((t_base_type*)the_type2)->get_base();
