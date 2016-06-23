@@ -795,12 +795,15 @@ void t_cocoa_generator::generate_cocoa_struct_copy_method(ofstream& out, t_struc
   
   for (m_iter = members.begin(); m_iter != members.end(); ++m_iter) {
     t_type* t = get_true_type((*m_iter)->get_type());
+    out << indent() << "if (_" << (*m_iter)->get_name() << "IsSet)" << endl;
+    scope_up(out);
     if (type_can_be_null(t)) {
       out << indent() << "val." << (*m_iter)->get_name() << " = [self." << (*m_iter)->get_name() << " copy];";
     } else {
       out << indent() << "val." << (*m_iter)->get_name() << " = self." << (*m_iter)->get_name() << ";";
     }
     out << endl;
+    scope_down(out);
   }
   
   out << indent() << "return val;" << endl;
@@ -2767,7 +2770,7 @@ void t_cocoa_generator::print_const_value(ostream& out,
         mapout << ", ";
       }
     }
-    mapout << "};" << endl;
+    mapout << "}";
     out << mapout.str();
   } else if (type->is_list()) {
     ostringstream listout;
@@ -2784,7 +2787,7 @@ void t_cocoa_generator::print_const_value(ostream& out,
         listout << ", ";
       }
     }
-    listout << "];" << endl;
+    listout << "]";
     out << listout.str();
   } else if (type->is_set()) {
     ostringstream setout;
@@ -2794,14 +2797,14 @@ void t_cocoa_generator::print_const_value(ostream& out,
     vector<t_const_value*>::const_iterator v_iter;
     if (defval)
       setout << type_name(type) << " ";
-    setout << name << " = [[NSSet alloc] initWithArray:@[";
+    setout << name << " = [NSSet setWithArray:@[";
     for (v_iter = val.begin(); v_iter != val.end();) {
       setout << render_const_value(out, etype, *v_iter, true);
       if (++v_iter != val.end()) {
         setout << ", ";
       }
     }
-    setout << "]];" << endl;
+    setout << "]]";
     out << setout.str();
   } else {
     throw "compiler error: no const of type " + type->get_name();
@@ -2849,6 +2852,7 @@ string t_cocoa_generator::render_const_value(ostream& out,
   } else {
     string t = tmp("tmp");
     print_const_value(out, t, type, value, true);
+    out << ";" << endl;
     render << t;
   }
 
