@@ -2310,6 +2310,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
         f_remote << indent() << "tmp" << i << ", err := (strconv.Atoi(flag.Arg(" << flagArg << ")))"
                  << endl;
         f_remote << indent() << "if err != nil {" << endl;
+        f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", err.Error() ,\" with argument " << flagArg << "\")" << endl;
         f_remote << indent() << "  Usage()" << endl;
         f_remote << indent() << " return" << endl;
         f_remote << indent() << "}" << endl;
@@ -2345,6 +2346,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
           f_remote << indent() << "tmp" << i << ", " << err << " := (strconv.Atoi(flag.Arg("
                    << flagArg << ")))" << endl;
           f_remote << indent() << "if " << err << " != nil {" << endl;
+          f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err << ".Error() ,\" with argument " << flagArg << "\")" << endl;
           f_remote << indent() << "  Usage()" << endl;
           f_remote << indent() << "  return" << endl;
           f_remote << indent() << "}" << endl;
@@ -2355,6 +2357,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
           f_remote << indent() << "tmp" << i << ", " << err << " := (strconv.Atoi(flag.Arg("
                    << flagArg << ")))" << endl;
           f_remote << indent() << "if " << err << " != nil {" << endl;
+          f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err << ".Error() ,\" with argument " << flagArg << "\")" << endl;
           f_remote << indent() << "  Usage()" << endl;
           f_remote << indent() << "  return" << endl;
           f_remote << indent() << "}" << endl;
@@ -2365,6 +2368,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
           f_remote << indent() << "tmp" << i << ", " << err << " := (strconv.Atoi(flag.Arg("
                    << flagArg << ")))" << endl;
           f_remote << indent() << "if " << err << " != nil {" << endl;
+          f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err << ".Error() ,\" with argument " << flagArg << "\")" << endl;
           f_remote << indent() << "  Usage()" << endl;
           f_remote << indent() << "  return" << endl;
           f_remote << indent() << "}" << endl;
@@ -2375,6 +2379,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
           f_remote << indent() << "argvalue" << i << ", " << err
                    << " := (strconv.ParseInt(flag.Arg(" << flagArg << "), 10, 64))" << endl;
           f_remote << indent() << "if " << err << " != nil {" << endl;
+          f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err << ".Error() ,\" with argument " << flagArg << "\")" << endl;
           f_remote << indent() << "  Usage()" << endl;
           f_remote << indent() << "  return" << endl;
           f_remote << indent() << "}" << endl;
@@ -2384,6 +2389,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
           f_remote << indent() << "argvalue" << i << ", " << err
                    << " := (strconv.ParseFloat(flag.Arg(" << flagArg << "), 64))" << endl;
           f_remote << indent() << "if " << err << " != nil {" << endl;
+          f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err << ".Error() ,\" with argument " << flagArg << "\")" << endl;
           f_remote << indent() << "  Usage()" << endl;
           f_remote << indent() << "  return" << endl;
           f_remote << indent() << "}" << endl;
@@ -2415,6 +2421,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
         f_remote << indent() << "_, " << err1 << " := " << mbTrans << ".WriteString(" << arg << ")"
                  << endl;
         f_remote << indent() << "if " << err1 << " != nil {" << endl;
+        f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err1 << ".Error() ,\" with argument " << flagArg << "\")" << endl;
         f_remote << indent() << "  Usage()" << endl;
         f_remote << indent() << "  return" << endl;
         f_remote << indent() << "}" << endl;
@@ -2425,6 +2432,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
                  << "()" << endl;
         f_remote << indent() << err2 << " := argvalue" << i << "." << read_method_name_ <<  "(" << jsProt << ")" << endl;
         f_remote << indent() << "if " << err2 << " != nil {" << endl;
+        f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err2 << ".Error() ,\" with argument " << flagArg << "\")" << endl;
         f_remote << indent() << "  Usage()" << endl;
         f_remote << indent() << "  return" << endl;
         f_remote << indent() << "}" << endl;
@@ -2443,6 +2451,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
         f_remote << indent() << "_, " << err1 << " := " << mbTrans << ".WriteString(" << arg << ")"
                  << endl;
         f_remote << indent() << "if " << err1 << " != nil { " << endl;
+        f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err1 << ".Error() ,\" with argument " << flagArg << "\")" << endl;
         f_remote << indent() << "  Usage()" << endl;
         f_remote << indent() << "  return" << endl;
         f_remote << indent() << "}" << endl;
@@ -2454,6 +2463,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
         f_remote << indent() << err2 << " := containerStruct" << i << ".ReadField" << (i + 1) << "("
                  << jsProt << ")" << endl;
         f_remote << indent() << "if " << err2 << " != nil {" << endl;
+        f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Error \", " << err2 << ".Error() ,\" with argument " << flagArg << "\")" << endl;
         f_remote << indent() << "  Usage()" << endl;
         f_remote << indent() << "  return" << endl;
         f_remote << indent() << "}" << endl;
@@ -2522,6 +2532,7 @@ void t_go_generator::generate_service_remote(t_service* tservice) {
   }
 
   f_remote << indent() << "case \"\":" << endl;
+  f_remote << indent() << "  fmt.Fprintln(os.Stderr, \"Empty function name\")" << endl;
   f_remote << indent() << "  Usage()" << endl;
   f_remote << indent() << "  break" << endl;
   f_remote << indent() << "default:" << endl;
