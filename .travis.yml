@@ -28,7 +28,7 @@ services:
 script:
   - apt-get install libboost-dev libboost-program-options-dev autoconf automake libtool libssl-dev pkg-config bison g++ flex default-jdk ant git mercurial
   - ./bootstrap.sh
-  - ./configure --prefix=/usr/local/ --with-cpp --with-go
+  - ./configure --prefix=/usr/local/ --with-cpp --with-go --without-dart --without-haskell --without-java --without-lua --without-nodejs --without-perl --without-php --without-php_extension --without-python --without-ruby --without-erlang
   - make
 
 env:
