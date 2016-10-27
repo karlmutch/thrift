@@ -27,17 +27,8 @@ services:
 
 script:
   - ./bootstrap.sh
-  - ./configure --prefix=/usr/local/ --with-cpp --with-go --without-dart --without-haskell --without-java --without-lua --without-nodejs --without-perl --without-php --without-php_extension --without-python --without-ruby --without-erlang
+  - ./configure --prefix=/usr/local/ --with-cpp --with-go --without-dart --without-haskell --with-java --with-lua --without-nodejs --without-perl --without-php --without-php_extension --with-python --without-ruby --without-erlang
   - make
-
-env:
-  global:
-    - TEST_NAME=""
-    - BUILD_CMD="none"
-    - BUILD_ARG=""
-    - BUILD_ENV="-e CC=clang -e CXX=clang++"
-    - DISTRO=ubuntu
-    - BUILD_LIBS="CPP C_GLIB HASKELL JAVA PYTHON TESTING TUTORIALS"  # only meaningful for CMake builds
 
 deploy:
   provider: releases
@@ -47,3 +38,17 @@ deploy:
   on:
     repo: karlmutch/thrift
     branch: dev
+
+language: cpp
+compiler:
+  - g++
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - boost-latest
+    packages:
+      - gcc-4.9
+      - g++-4.9
+      - libboost1.55-all-dev
+      - cmake
