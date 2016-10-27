@@ -42,33 +42,33 @@ env:
     - BUILD_LIBS="CPP C_GLIB HASKELL JAVA PYTHON TESTING TUTORIALS"  # only meaningful for CMake builds
 
 matrix:
-   - TEST_NAME="C C++ - GCC  Go (automake)"
-     BUILD_CMD="../autotools.sh"
-     BUILD_ARG="--without-csharp --without-java --without-erlang --without-nodejs --without-lua --without-python --without-perl --without-php --without-php_extension --without-dart --without-ruby --without-haskell --without-haxe --without-d"
-     BUILD_ENV="-e CC=gcc -e CXX=g++"
+  - TEST_NAME="C C++ - GCC  Go (automake)"
+    BUILD_CMD="../autotools.sh"
+    BUILD_ARG="--without-csharp --without-java --without-erlang --without-nodejs --without-lua --without-python --without-perl --without-php --without-php_extension --without-dart --without-ruby --without-haskell --without-haxe --without-d"
+    BUILD_ENV="-e CC=gcc -e CXX=g++"
 
-   # CMake build
-   - TEST_NAME="All"
-     BUILD_CMD="../cmake.sh"
-     
-   - TEST_NAME="All (Debian)"
-     BUILD_CMD="../cmake.sh"
-     DISTRO=debian
+  # CMake build
+  - TEST_NAME="All"
+    BUILD_CMD="../cmake.sh"
+
+  - TEST_NAME="All (Debian)"
+    BUILD_CMD="../cmake.sh"
+    DISTRO=debian
 
   # Distribution
   - TEST_NAME="make dist"
     BUILD_CMD="../make-dist.sh"
     BUILD_ENV="-e CC=gcc -e CXX=g++"
-    
+
   - TEST_NAME="Debian Packages"
     BUILD_CMD="../dpkg.sh"
     BUILD_ENV="-e CC=gcc -e CXX=g++"
-    
+
   - TEST_NAME="make dist (Debian)"
     BUILD_CMD="../make-dist.sh"
     BUILD_ENV="-e CC=gcc -e CXX=g++"
     DISTRO=debian
-    
+
   - TEST_NAME="Debian Packages (Debian)"
     BUILD_CMD="../dpkg.sh"
     BUILD_ENV="-e CC=gcc -e CXX=g++"
