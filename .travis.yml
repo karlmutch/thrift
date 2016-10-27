@@ -198,3 +198,12 @@ matrix:
         # System Info
         - dpkg -l
         - uname -a
+
+deploy:
+  provider: releases
+  api_key:
+    secure: x4v8iywUNK254dVGZEpUc2F+8HoB5Sn/b5WZNtR6+z5xeVr+10w9iZcv14MPGepxJgJ+36Hqzqqk3HpKnU6DcweiebHVtGgxkTPzaADZU4s/jwdoEXIGb+W9rDSM9AYr3KcgdMc5bW69U4xHv2z9I73yOCcMcojAv3jowUohoXSIscbj5uekKkGjgjSoQPyUvz2pS8NxQ8+55I3alT6ZJ2mD5/HrgXf8VjW+j50DkOvwMlPQX8g8LkCXs8c/daxV9HJxojUlZJyAHF7YgWYq9YviPRuNkC+Ltt1QAIJRm6ujgfD4VL6csa04lWCbPMarzpubpGGJuya+vEyDPgOrQa7oEmkLa6OiOWTTUW4oZhxAjVh6B/sobSbvbTvUvyY4axVMVgE9jibhLMoUoiv58QfrywAWZjCoSIgghGFh60N/WczV/jN1hTIwsa6qHMnTYtsLOhiH16MdC95mcDNOYjJk41RScha8T2g1RkdxKYAhsKPNQNwAgVwDU+WlsotXFL8sQlR4hs/XP0gem432Pll8Iz9EeMVCSKlhbC/3+3nH73ebMibJS65OoLWHao3iX66ntG98q7DJzjsBMwLubki+bJWPT0+sb3Y5kLE1MAsE+8o3tf0VV42ErrxyHJLM+PalnZ/JQzwhfs+hsOIdcdHqAofZyF4ybBO3XAFHR3k=
+  file: "./compiler/cpp/thrift"
+  on:
+    repo: karlmutch/thrift
+    branch: dev
